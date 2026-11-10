@@ -1,0 +1,6 @@
+package week_01;
+import javax.swing.*;import java.awt.*;
+public class frm_KetNoiSQL extends JFrame {
+ private final JTextField dbPath=new JTextField(DbConfig.getPath()); private final JLabel status=new JLabel("Chưa mở database.");
+ public frm_KetNoiSQL(){super("Mở cơ sở dữ liệu SQLite");setDefaultCloseOperation(DISPOSE_ON_CLOSE);setSize(650,210);setLocationRelativeTo(null);JPanel p=new JPanel(new GridBagLayout());p.setBorder(BorderFactory.createEmptyBorder(20,22,20,22));GridBagConstraints g=new GridBagConstraints();g.insets=new Insets(6,6,6,6);g.fill=GridBagConstraints.HORIZONTAL;g.gridx=0;g.gridy=0;p.add(new JLabel("File SQLite:"),g);g.gridx=1;g.weightx=1;p.add(dbPath,g);g.gridx=2;g.weightx=0;JButton browse=new JButton("Chọn file…");p.add(browse,g);g.gridx=1;g.gridy=1;JButton test=new JButton("Mở / kiểm tra");p.add(test,g);g.gridy=2;p.add(status,g);browse.addActionListener(e->{JFileChooser c=new JFileChooser();c.setSelectedFile(new java.io.File(dbPath.getText()));if(c.showSaveDialog(this)==JFileChooser.APPROVE_OPTION)dbPath.setText(c.getSelectedFile().getPath());});test.addActionListener(e->{try{DbConfig.setPath(dbPath.getText().trim());status.setText(DbConfig.test());}catch(Exception x){status.setText("Không mở được SQLite: "+x.getMessage());}});add(p);}
+}

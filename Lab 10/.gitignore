@@ -1,0 +1,10 @@
+target/
+*.log
+*.class
+.idea/
+.vscode/
+*.user
+
+*.db
+report/*.pdf
+report/qa_pages/
