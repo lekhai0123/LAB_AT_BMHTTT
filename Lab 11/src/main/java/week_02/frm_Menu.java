@@ -1,0 +1,8 @@
+package week_02;
+
+import java.awt.*;import javax.swing.*;
+public class frm_Menu extends JFrame {
+ public frm_Menu(){super("LAB 2 - Mã hóa đối xứng hiện đại");setDefaultCloseOperation(EXIT_ON_CLOSE);DbConfig.initialize();JPanel p=new JPanel();p.setBorder(BorderFactory.createEmptyBorder(24,35,24,35));p.setLayout(new BoxLayout(p,BoxLayout.Y_AXIS));JLabel h=new JLabel("LAB 2 - MÃ HÓA ĐỐI XỨNG HIỆN ĐẠI");h.setFont(new Font("Segoe UI",Font.BOLD,21));p.add(h);p.add(Box.createVerticalStrut(8));p.add(new JLabel("Lê Thanh Khải - MSSV: 1150080020"));p.add(new JLabel("Chọn một bài để mở form tương ứng:"));p.add(Box.createVerticalStrut(14));button(p,"2.1 DES",()->new frm_DES().setVisible(true));button(p,"2.2 TripleDES",()->new frm_TripleDES().setVisible(true));button(p,"2.3 AES + Register/Login",()->new frm_AES().setVisible(true));button(p,"2.4 RC4",()->new frm_RC4().setVisible(true));button(p,"2.5 Twofish",()->new frm_Twofish().setVisible(true));button(p,"2.6 Nâng cao - AES-CTR",()->new frm_AES_CTR().setVisible(true));button(p,"Kết nối SQLite",()->new frm_KetNoiSQL().setVisible(true));button(p,"Xem lịch sử",()->new frm_LichSu().setVisible(true));p.add(Box.createVerticalStrut(8));p.add(new JLabel("Bài nâng cao 02: chạy aes_cbc_gui.py bằng Python."));setContentPane(p);pack();setLocationRelativeTo(null);}
+ private void button(JPanel p,String text,Runnable action){JButton b=new JButton(text);b.setAlignmentX(LEFT_ALIGNMENT);b.setMaximumSize(new Dimension(300,34));b.addActionListener(e->action.run());p.add(b);p.add(Box.createVerticalStrut(5));}
+ public static void main(String[] args){SwingUtilities.invokeLater(()->new frm_Menu().setVisible(true));}
+}
